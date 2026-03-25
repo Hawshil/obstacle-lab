@@ -14,7 +14,7 @@ A modular, scalable parkour system built in Unreal Engine 5 focusing on fluid tr
 - Animation Blueprints
 
 ## 📸 Demo
-(Add GIFs or video)
+(Coming Soon)
 
 ## 🧠 Architecture
 - Player Controller → Input handling
