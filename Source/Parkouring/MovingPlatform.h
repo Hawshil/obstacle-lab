@@ -22,4 +22,23 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere)
+	int32 temp = 100;
+
+	UPROPERTY(EditAnywhere)
+	int32 A = 0;
+
+	UPROPERTY(EditAnywhere)
+	int32 B = 0;
+
+	UPROPERTY(EditAnywhere)
+	int32 sum = 0;
+
+	UPROPERTY(EditAnywhere)
+	float deci = 2.5;
+	
+
+	UPROPERTY(EditAnywhere)
+	bool hasGF = false;
 };
