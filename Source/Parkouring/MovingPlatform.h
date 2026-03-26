@@ -23,22 +23,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
-	int32 temp = 100;
+	FVector direction = FVector(1, 2, 3);
 
-	UPROPERTY(EditAnywhere)
-	int32 A = 0;
-
-	UPROPERTY(EditAnywhere)
-	int32 B = 0;
-
-	UPROPERTY(EditAnywhere)
-	int32 sum = 0;
-
-	UPROPERTY(EditAnywhere)
-	float deci = 2.5;
-	
-
-	UPROPERTY(EditAnywhere)
-	bool hasGF = false;
+	float x = 0, y = 0, z = 0;
 };

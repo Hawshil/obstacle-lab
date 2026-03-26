@@ -14,9 +14,9 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 
-	temp = 500;
-
-	sum = A + B;
+	x = direction.X;
+	y = direction.Y;
+	z = direction.Z;
 }
 
 // Called every frame
