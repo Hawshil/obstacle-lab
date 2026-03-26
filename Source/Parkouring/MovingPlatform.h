@@ -23,7 +23,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	FVector direction = FVector(1, 2, 3);
-
-	float x = 0, y = 0, z = 0;
+	UPROPERTY(EditAnywhere)
+	FVector lokation = FVector(1, 2, 3);
+	
+	// UPROPERTY(EditAnywhere)
+	// float x = 0, y = 0, z = 0;
 };

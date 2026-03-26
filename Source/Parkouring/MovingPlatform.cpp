@@ -14,9 +14,11 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 
-	x = direction.X;
-	y = direction.Y;
-	z = direction.Z;
+	// x = direction.X;
+	// y = direction.Y;
+	// z = direction.Z;
+
+	SetActorLocation(lokation);
 }
 
 // Called every frame
