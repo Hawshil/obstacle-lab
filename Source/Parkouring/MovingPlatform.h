@@ -23,14 +23,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, Category = "Moving Platform") 	// Direction and Magnitude Vector
-	FVector PlatformVelocity = FVector(2, 2, 100);
+	UPROPERTY(EditAnywhere, Category = "Moving Platform") // Direction and Magnitude Vector
+	FVector PlatformVelocity = FVector(0, 0, 200);
 
-	UPROPERTY(VisibleAnywhere, Category = "Moving Platform") 	// Distance from original (start) point
+	UPROPERTY(VisibleAnywhere, Category = "Moving Platform") // Distance from original (start) point
 	double PlatformDistance = -1;
 
-	UPROPERTY(EDitAnywhere, Category = "Moving Platform") 	// Direction change after this distance
-	double AllowedDistance = 1000;
+	UPROPERTY(EDitAnywhere, Category = "Moving Platform") // Direction change after this distance
+	double AllowedDistance = 500;
 
 	FVector CurrentLocation;
 	FVector StartLocation;

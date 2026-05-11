@@ -16,6 +16,10 @@ void AMovingPlatform::BeginPlay()
 
 	StartLocation = GetActorLocation();
 	CurrentLocation = GetActorLocation();
+
+	UE_LOG(LogTemp, Display, TEXT("Casual Logging Message"));
+	UE_LOG(LogTemp, Warning, TEXT("Warning Logs"));
+	UE_LOG(LogTemp, Error, TEXT("Error Logs"));
 }
 
 // Called every frame
@@ -30,11 +34,14 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 	if (PlatformDistance > AllowedDistance)
 	{
+		float OverShoot = PlatformDistance - AllowedDistance;
+		UE_LOG(LogTemp, Display, TEXT("Logging Overshots: %f"), OverShoot); // Type, Urgency, Content
+
 		FVector MovingDirection = PlatformVelocity.GetSafeNormal();
 
 		// StartLocation = CurrentLocation;     // INACCURATE due to if condition (overthrow always)
 		StartLocation += MovingDirection * AllowedDistance; // To make the distance zero, velocity normal * next start location
-		SetActorLocation(StartLocation); 
+		SetActorLocation(StartLocation);
 
 		PlatformVelocity = -PlatformVelocity; // Change direction
 	}
