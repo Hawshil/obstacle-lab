@@ -35,7 +35,8 @@ void AMovingPlatform::Tick(float DeltaTime)
 	if (PlatformDistance > AllowedDistance)
 	{
 		float OverShoot = PlatformDistance - AllowedDistance;
-		UE_LOG(LogTemp, Display, TEXT("Logging Overshots: %f"), OverShoot); // Type, Urgency, Content
+		FString ObstacleName = GetName();
+		UE_LOG(LogTemp, Error, TEXT("%s Overshot by: %f"), *ObstacleName, OverShoot); // Type, Urgency, Content
 
 		FVector MovingDirection = PlatformVelocity.GetSafeNormal();
 
