@@ -29,6 +29,11 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 void AMovingPlatform::MovePlatform(float DeltaTime)
 {
+	CurrentLocation += (PlatformVelocity * DeltaTime); // Deltatime to avoid frame rate dependency (same speed for every device)
+	SetActorLocation(CurrentLocation);				   // Update Platform location every frame
+
+	PlatformDistance = FVector::Dist(StartLocation, CurrentLocation); // Calculate distance from start location (irrespective of moving direction)
+
 	if (ShouldPlatformChangeDirection())
 	{
 		FVector MovingDirection = PlatformVelocity.GetSafeNormal();
@@ -39,18 +44,12 @@ void AMovingPlatform::MovePlatform(float DeltaTime)
 
 		PlatformVelocity = -PlatformVelocity; // Change direction
 	}
-	else
-	{
-		CurrentLocation += (PlatformVelocity * DeltaTime); // Deltatime to avoid frame rate dependency (same speed for every device)
-		SetActorLocation(CurrentLocation);				   // Update Platform location every frame
-
-		PlatformDistance = FVector::Dist(StartLocation, CurrentLocation); // Calculate distance from start location (irrespective of moving direction)
-	}
 }
 
 void AMovingPlatform::RotatePlatform(float DeltaTime)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Ab platform ghoomega"));
+	// SetActorRotation() is buggy
+	AddActorLocalRotation(RotationVelocity * DeltaTime);
 }
 
 bool AMovingPlatform::ShouldPlatformChangeDirection() const
