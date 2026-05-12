@@ -53,7 +53,7 @@ void AMovingPlatform::RotatePlatform(float DeltaTime)
 	UE_LOG(LogTemp, Warning, TEXT("Ab platform ghoomega"));
 }
 
-bool AMovingPlatform::ShouldPlatformChangeDirection()
+bool AMovingPlatform::ShouldPlatformChangeDirection() const
 {
 	return PlatformDistance > AllowedDistance;
 }
