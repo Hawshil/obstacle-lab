@@ -16,10 +16,6 @@ void AMovingPlatform::BeginPlay()
 
 	StartLocation = GetActorLocation();
 	CurrentLocation = GetActorLocation();
-
-	UE_LOG(LogTemp, Display, TEXT("Casual Logging Message"));
-	UE_LOG(LogTemp, Warning, TEXT("Warning Logs"));
-	UE_LOG(LogTemp, Error, TEXT("Error Logs"));
 }
 
 // Called every frame
@@ -27,17 +23,14 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	CurrentLocation += (PlatformVelocity * DeltaTime); // Deltatime to avoid frame rate dependency (same speed for every device)
-	SetActorLocation(CurrentLocation);				   // Update Platform location every frame
+	MovePlatform(DeltaTime);
+	RotatePlatform(DeltaTime);
+}
 
-	PlatformDistance = FVector::Dist(StartLocation, CurrentLocation); // Calculate distance from start location (irrespective of moving direction)
-
-	if (PlatformDistance > AllowedDistance)
+void AMovingPlatform::MovePlatform(float DeltaTime)
+{
+	if (ShouldPlatformChangeDirection())
 	{
-		float OverShoot = PlatformDistance - AllowedDistance;
-		FString ObstacleName = GetName();
-		UE_LOG(LogTemp, Error, TEXT("%s Overshot by: %f"), *ObstacleName, OverShoot); // Type, Urgency, Content
-
 		FVector MovingDirection = PlatformVelocity.GetSafeNormal();
 
 		// StartLocation = CurrentLocation;     // INACCURATE due to if condition (overthrow always)
@@ -46,4 +39,21 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 		PlatformVelocity = -PlatformVelocity; // Change direction
 	}
+	else
+	{
+		CurrentLocation += (PlatformVelocity * DeltaTime); // Deltatime to avoid frame rate dependency (same speed for every device)
+		SetActorLocation(CurrentLocation);				   // Update Platform location every frame
+
+		PlatformDistance = FVector::Dist(StartLocation, CurrentLocation); // Calculate distance from start location (irrespective of moving direction)
+	}
+}
+
+void AMovingPlatform::RotatePlatform(float DeltaTime)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Ab platform ghoomega"));
+}
+
+bool AMovingPlatform::ShouldPlatformChangeDirection()
+{
+	return PlatformDistance > AllowedDistance;
 }

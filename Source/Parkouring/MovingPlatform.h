@@ -23,6 +23,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
 	UPROPERTY(EditAnywhere, Category = "Moving Platform") // Direction and Magnitude Vector
 	FVector PlatformVelocity = FVector(0, 0, 200);
 
@@ -34,4 +35,9 @@ public:
 
 	FVector CurrentLocation;
 	FVector StartLocation;
+
+	void MovePlatform(float DeltaTime);
+	void RotatePlatform(float DeltaTime);
+
+	bool ShouldPlatformChangeDirection(	);
 };
